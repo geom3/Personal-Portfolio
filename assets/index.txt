@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Personal Potfolio | Geom</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="MAIN" data-model-id="2:2">
+      <div class="overlap-group-wrapper">
+        <div class="overlap-group">
+          <div class="rectangle"></div>
+          <img class="back-ground-circles" src="https://c.animaapp.com/EFLPtb5l/img/back-ground-circles-.png" />
+          <img class="signature" src="https://c.animaapp.com/EFLPtb5l/img/signature.svg" />
+          <div class="media">
+            <a
+              href="https://www.linkedin.com/in/seif-eldeen-nyazy-36ba26365?trk=contact-info"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="frame" src="https://c.animaapp.com/EFLPtb5l/img/frame.svg"
+            /></a>
+            <a href="seifeldeen212@gmail.com " target="_blank" rel="noopener noreferrer"
+              ><img class="img" src="https://c.animaapp.com/EFLPtb5l/img/frame-1.svg"
+            /></a>
+            <a href="https://github.com/geom3" target="_blank" rel="noopener noreferrer"
+              ><img class="frame-2" src="https://c.animaapp.com/EFLPtb5l/img/frame-2.svg"
+            /></a>
+            <a href="https://www.facebook.com/share/1FHdFT6WtP/" target="_blank" rel="noopener noreferrer"
+              ><img class="frame-3" src="https://c.animaapp.com/EFLPtb5l/img/frame-3.svg"
+            /></a>
+          </div>
+          <div class="div"></div>
+          <p class="contact"><span class="text-wrapper">Contact</span> <span class="span">&nbsp;</span></p>
+          <div class="phone">
+            <img class="vector" src="https://c.animaapp.com/EFLPtb5l/img/vector.svg" />
+            <div class="text-wrapper-2">: 01224564852</div>
+          </div>
+          <p class="p">© Geom/Seif . Design By Mk/Menna . 2025</p>
+          <div class="rectangle-2"></div>
+          <div class="nav-bar">
+            <img
+              class="whatsapp-image"
+              src="https://c.animaapp.com/EFLPtb5l/img/whatsapp-image-2025-08-14-at-1-03-53-am-1@2x.png"
+            />
+            <div class="text-wrapper-3">Geom/Seif</div>
+            <div class="text-wrapper-4">About</div>
+            <div class="text-wrapper-5">Projects</div>
+            <div class="text-wrapper-6">Contact</div>
+          </div>
+          <div class="welcome-to-geom">WELCOME TO GEOM WORLD</div>
+          <div class="about">
+            <div class="text-wrapper-7">Geom</div>
+            <p class="the-developer-who">
+              The developer who loves building smooth, practical solutions and making them come to live. Keep in mind ,
+              The start was from Zero to One, now Confident in my skills Willing to taste new challenges.
+            </p>
+          </div>
+          <p class="when-misery-and-hope">when misery and Hope Union to make things come true</p>
+          <img class="ellipse" src="https://c.animaapp.com/EFLPtb5l/img/ellipse-10@2x.png" />
+          <img class="ellipse-2" src="https://c.animaapp.com/EFLPtb5l/img/ellipse-11@2x.png" />
+          <img class="ellipse-3" src="https://c.animaapp.com/EFLPtb5l/img/ellipse-12@2x.png" />
+          <img class="ellipse-4" src="https://c.animaapp.com/EFLPtb5l/img/ellipse-13@2x.png" />
+          <div class="group"><div class="ellipse-5"></div></div>
+          <div class="my-projects">My <br />Projects</div>
+          <div class="text-wrapper-8">A small recipes</div>
+          <div class="text-wrapper-9">Landing page</div>
+          <p class="my-first-ever">
+            My first ever website, took a long time to create , Most of it was Html and little sprinkles of Css.
+            <br /><br />https://geom3.github.io/odin-recipes/
+          </p>
+          <p class="main-page-template">
+            Main page template, There isn’t much details as an intention to edit it for other projects
+            <br /><br />https://geom3.github.io/Try-Landing-Page/
+          </p>
+          <div class="text-wrapper-10">CAFÉ website</div>
+          <p class="it-is-a-full-project">
+            &nbsp;&nbsp;it is a full project simple and lively , it was a project assigned to me by Sprints x Microsoft
+            summer camp-web Development <br /><br />https://geom3.github.io/harmony-cafe/
+          </p>
+          <div class="text-wrapper-11">My freecodecamp</div>
+          <p class="an-account-to-show">
+            An account to show the certification projects i made<br /><br />https://www.freecodecamp.org/geom
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
