@@ -15,117 +15,23 @@
 
         body {
             min-height: 100vh;
-            background: #08103F;
             font-family: 'Autour One', sans-serif;
             color: white;
             overflow-x: hidden;
+            position: relative;
+            background: #08103F;
         }
 
-        /* Original Figma Background Elements */
-        .background-circles {
-            position: fixed;
+        /* SVG Background */
+        .background-svg {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 4757px; 
             z-index: -1;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 20s infinite ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(10px, 15px); }
-            50% { transform: translate(-15px, 10px); }
-            75% { transform: translate(5px, -10px); }
-        }
-
-        .circle-1 {
-            width: 1421px;
-            height: 464px;
-            left: 0;
-            top: -294px;
-            background: rgba(242, 255, 0, 0.5);
-            filter: blur(152px);
-            animation-duration: 25s;
-        }
-
-        .circle-2 {
-            width: 865px;
-            height: 913px;
-            left: 1055px;
-            top: 479px;
-            background: rgba(204, 0, 255, 0.66);
-            animation-duration: 22s;
-            animation-delay: 2s;
-        }
-
-        .circle-3 {
-            width: 444px;
-            height: 1029px;
-            left: -222px;
-            top: 562px;
-            background: rgba(0, 213, 255, 0.49);
-            animation-duration: 28s;
-        }
-
-        .circle-4 {
-            width: 444px;
-            height: 444px;
-            left: 1218px;
-            top: 1857px;
-            background: #FF0077;
-            filter: blur(80.25px);
-            animation-duration: 24s;
-            animation-delay: 1s;
-        }
-
-        .circle-5 {
-            width: 646px;
-            height: 873px;
-            left: -84px;
-            top: 2456px;
-            background: rgba(0, 255, 242, 0.27);
-            filter: blur(144.85px);
-            animation-duration: 26s;
-        }
-
-        .circle-6 {
-            width: 556px;
-            height: 688px;
-            left: 1040px;
-            top: 3160px;
-            background: rgba(88, 12, 240, 0.77);
-            filter: blur(125.6px);
-            animation-duration: 30s;
-        }
-
-        .circle-7 {
-            width: 444px;
-            height: 444px;
-            left: -98px;
-            top: 3848px;
-            background: #F8FFB0;
-            border: 1px solid #000000;
-            filter: blur(87.65px);
-            animation-duration: 23s;
-        }
-
-        .circle-8 {
-            width: 925px;
-            height: 444px;
-            left: 346px;
-            top: 4601px;
-            background: #F981CB;
-            filter: blur(67.15px);
-            animation-duration: 27s;
+            background: url('assets/background.svg') no-repeat center top;
+            background-size: 100% auto; /* add a little to cover the bottom gap */
         }
 
         /* Navigation Bar */
@@ -140,18 +46,13 @@
             display: flex;
             align-items: center;
             z-index: 100;
-            background: rgba(33, 43, 98, 0.2);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(12px);
             border-radius: 50px;
             padding: 0 30px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(0, 200, 255, 0.15);
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { top: -100px; opacity: 0; }
-            to { top: 20px; opacity: 1; }
+            border: 0.1px solid rgb(143, 142, 142);
+            margin-top: 50px;
         }
 
         .logo {
@@ -166,14 +67,7 @@
             font-size: 20px;
             font-weight: bold;
             margin-right: 15px;
-            animation: pulse 2s infinite;
             backdrop-filter: blur(2px);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 119, 0.3); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 119, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 119, 0); }
         }
 
         .logo-text {
@@ -185,7 +79,7 @@
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 200px;
         }
 
         .nav-links a {
@@ -200,19 +94,10 @@
         }
 
         .nav-links a:hover {
-            color: #2E3312;
+            color: #A8B35D;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: rgba(0, 200, 255, 0.5);
-            transition: width 0.3s ease;
-        }
+        
 
         .nav-links a:hover::after {
             width: 100%;
@@ -230,48 +115,35 @@
             text-align: center;
             padding: 20px;
             z-index: 10;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .welcome-title {
-            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             line-height: 1.2;
             text-transform: uppercase;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #FF0077, #00C8FF);
+           background: linear-gradient(
+    90deg, 
+    #8A38F5 0%, 
+    rgba(242, 255, 0, 0.5) 50.96%, 
+    #D985AC 65.87%, 
+    #2D46D0 86.54%
+  );
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .welcome-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-size: clamp(0.9rem, 2vw, 1.3rem);
             max-width: 800px;
             color: rgba(255, 255, 255, 0.85);
             margin-bottom: 40px;
             line-height: 1.6;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-10px); }
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding-top: 30px;
         }
 
         /* About Section - Clean Design */
@@ -280,8 +152,8 @@
             width: 90%;
             max-width: 1000px;
             margin: 100px auto;
-            padding: 50px;
-            background: rgba(33, 43, 98, 0.2);
+            padding: 100px;
+            background: #212B6233;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
@@ -289,21 +161,23 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 200, 255, 0.1);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            animation: float 8s ease-in-out infinite;
             z-index: 20;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             margin-bottom: 30px;
-            color: rgba(0, 200, 255, 0.9);
-            text-align: center;
+            background: linear-gradient(
+    180deg, 
+    #F2FF00 42%, 
+    #C259FF 56%, 
+    #EE2F88 96%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
+  color: transparent; 
+            text-align: left;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -342,7 +216,6 @@
             border: 1px solid rgba(0, 200, 255, 0.1);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             z-index: 40;
-            
         }
 
         /* Signature Background Layer */
@@ -352,7 +225,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Behind content but above card background */
+            z-index: 1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -373,7 +246,7 @@
 
         .contact-content {
             position: relative;
-            z-index: 2; /* Above the signature layer */
+            z-index: 2;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -383,15 +256,25 @@
         .contact-title {
             font-size: clamp(2.5rem, 4vw, 3.5rem);
             margin-bottom: 40px;
-            color: rgba(0, 200, 255, 0.9);
+            
             text-align: center;
-            background: linear-gradient(90deg, #00C8FF, #8A38F5);
+            background: linear-gradient(
+    90deg, 
+    #8A38F5 0%, 
+    rgba(242, 255, 0, 0.5) 51%, 
+    #D985AC 66%, 
+    #2D46D0 87%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* For Chrome & Safari */
+  background-clip: text;
+  color: transparent; /* Fallback */
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Social Media Icons */
+        /* Social Media Icons - Clean Version */
         .social-icons {
             display: flex;
             gap: 30px;
@@ -404,44 +287,32 @@
             height: 80px;
             border-radius: 50%;
             overflow: hidden;
-            transition: transform 0.3s ease;
-           
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .social-icon-link:hover {
-            transform: translateY(-8px);
-            
-        }
-
         .social-icon-link img {
-            width: 45px;
-            height: 45px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
-            transition: transform 0.3s ease;
         }
 
-        .social-icon-link:hover img {
-            transform: scale(1.1);
-        }
+        
+       
 
         /* Phone Info Container */
         .phone-info {
             display: flex;
             align-items: center;
             gap: 20px;
-            
             padding: 15px 30px;
             border-radius: 50px;
-           
         }
 
         .phone-icon {
             width: 50px;
             height: 50px;
-           
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -467,9 +338,11 @@
             text-align: center;
         }
 
-        /* Footer */
+        /* Footer - Gradient Line at Bottom */
         .footer-bar {
-            position: relative;
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
             height: 5px;
             background: linear-gradient(90deg, 
@@ -480,13 +353,13 @@
                 rgba(71, 226, 219, 0.71) 64.9%, 
                 #8A38F5 72.6%, 
                 #08103F 90.38%);
-            animation: gradientFlow 8s infinite alternate;
-            margin-top: 100px;
+            z-index: 50;
         }
 
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        /* Content container to ensure background covers everything */
+        .content-container {
+            position: relative;
+            min-height: 4757px; /* Match SVG height */
         }
 
         /* Responsive Design */
@@ -518,93 +391,91 @@
             .signature {
                 max-width: 90%;
             }
+            
+            .background-svg {
+                height: 4757px;
+                background-size: 100% 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Original Figma Background -->
-    <div class="background-circles">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
-        <div class="circle circle-3"></div>
-        <div class="circle circle-4"></div>
-        <div class="circle circle-5"></div>
-        <div class="circle circle-6"></div>
-        <div class="circle circle-7"></div>
-        <div class="circle circle-8"></div>
-    </div>
+    <!-- SVG Background -->
+    <div class="background-svg"></div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo"><img src="assets/logo.png" alt="logo"></div>
-        <div class="logo-text">Geom/Seif</div>
-        <div class="nav-links">
-            <a href="#about-navconnect">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <!-- Welcome Section -->
-    <section class="welcome-section">
-        <h1 class="welcome-title">WELCOME TO GEOM WORLD</h1>
-        <p class="welcome-subtitle">When Misery And Hope Unite To Make Things Come True</p>
-        <div class="scroll-down" id="about-navconnect">Scroll to explore ↓</div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <h2 class="section-title">Geom</h2>
-        <p class="about-text">
-            The developer who loves building smooth, practical solutions and making them come to life. keep in mind, The start was from Zero to One, now confident in my skills willing to taste new challenges.
-        </p>
-    </section>
-
-    <!-- Projects Section (Empty Free Space) -->
-    <section id="projects" class="projects-section">
-        <!-- Completely empty space for your custom content -->
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <!-- Signature Background Layer -->
-        <div class="signature-layer">
-            <div class="signature">
-                <img src="assets/Signature.svg" alt="Signature">
+    <!-- Content Container -->
+    <div class="content-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="logo"><img src="assets/logo.png" alt="logo"></div>
+            <div class="logo-text">Geom/Seif</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
             </div>
-        </div>
-        
-        <!-- Contact Content -->
-        <div class="contact-content">
-            <h2 class="contact-title">Contact</h2>
-            
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="#" class="social-icon-link">
-                    <img src="assets/facebook.png" alt="Facebook">
-                </a>
-                <a href="#" class="social-icon-link">
-                    <img src="assets/github.png" alt="GitHub">
-                </a>
-                <a href="#" class="social-icon-link">
-                    <img src="assets/email.png" alt="Email">
-                </a>
-                <a href="#" class="social-icon-link">
-                    <img src="assets/linkedin.png" alt="LinkedIn">
-                </a>
-            </div>
-            
-            <!-- Phone Information -->
-            <div class="phone-info">
-                <div class="phone-icon">
-                    <img src="assets/Vector.png" alt="Phone Icon">
+        </nav>
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">WELCOME TO GEOM WORLD</h1>
+            <p class="welcome-subtitle">When Misery And Hope Unite To Make Things Come True</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2 class="section-title">Geom</h2>
+            <p class="about-text">
+                The developer who loves building smooth, practical solutions and making them come to life. keep in mind, The start was from Zero to One, now confident in my skills willing to taste new challenges.
+            </p>
+        </section>
+
+        <!-- Projects Section (Empty Free Space) -->
+        <section id="projects" class="projects-section">
+            <!-- Completely empty space for your custom content -->
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <!-- Signature Background Layer -->
+            <div class="signature-layer">
+                <div class="signature">
+                    <img src="assets/Signature.svg" alt="Signature">
                 </div>
-                <div class="phone-text">: 01224564852</div>
             </div>
             
-            <p class="copyright">© Geom/Seif . Design By Mk/Menna . 2025</p>
-        </div>
-    </section>
+            <!-- Contact Content -->
+            <div class="contact-content">
+                <h2 class="contact-title">Contact</h2>
+                
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1FHdFT6WtP/" class="social-icon-link" target="_blank">
+                        <img src="assets/facebook.png" alt="Facebook" onmouseover="this.src='assets/facebook2.png'" onmouseout="this.src='assets/facebook.png'">
+                    </a>
+                    <a href="https://github.com/geom3" class="social-icon-link" target="_blank">
+                        <img src="assets/github.png" alt="GitHub" onmouseover="this.src='assets/github2.png'" onmouseout="this.src='assets/github.png'">
+                    </a>
+                    <a href="seifeldeen212@gmail.com" class="social-icon-link" target="_blank">
+                        <img src="assets/email.png" alt="Email" onmouseover="this.src='assets/email2.png'" onmouseout="this.src='assets/email.png'">
+                    </a>
+                    <a href="https://www.linkedin.com/in/seif-eldeen-nyazy-36ba26365/?trk=contact-info" class="social-icon-link" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" onmouseover="this.src='assets/linkedin2.png'" onmouseout="this.src='assets/linkedin.png'">
+                    </a>
+                </div>
+                
+                <!-- Phone Information -->
+                <div class="phone-info">
+                    <div class="phone-icon">
+                        <img src="assets/Vector.png" alt="Phone Icon">
+                    </div>
+                    <div class="phone-text">: 01224564852</div>
+                </div>
+                
+                <p class="copyright">© Geom/Seif . Design By Mk/Menna . 2025</p>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <div class="footer-bar"></div>
