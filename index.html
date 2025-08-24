@@ -1,405 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Geom | Clean Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Autour+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: 'Autour One', sans-serif;
-            color: white;
-            overflow-x: hidden;
-            position: relative;
-            background: #08103F;
-        }
-
-        /* SVG Background */
-        .background-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4757px; 
-            z-index: -1;
-            background: url('assets/background.svg') no-repeat center top;
-            background-size: 100% auto; /* add a little to cover the bottom gap */
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            width: 90%;
-            max-width: 1200px;
-            height: 75px;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 20px;
-            display: flex;
-            align-items: center;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(12px);
-            border-radius: 50px;
-            padding: 0 30px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            border: 0.1px solid rgb(143, 142, 142);
-            margin-top: 50px;
-        }
-
-        .logo {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(255, 0, 119, 0.7), rgba(0, 200, 255, 0.7));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            margin-right: 15px;
-            backdrop-filter: blur(2px);
-        }
-
-        .logo-text {
-            font-size: 18px;
-            margin-right: auto;
-            color: white;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 200px;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a:hover {
-            color: #A8B35D;
-        }
-
-        
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Welcome Section - Clean Gradient */
-        .welcome-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            z-index: 10;
-        }
-
-        .welcome-title {
-            font-size: clamp(2rem, 6vw, 4rem);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-           background: linear-gradient(
-    90deg, 
-    #8A38F5 0%, 
-    rgba(242, 255, 0, 0.5) 50.96%, 
-    #D985AC 65.87%, 
-    #2D46D0 86.54%
-  );
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .welcome-subtitle {
-            font-size: clamp(0.9rem, 2vw, 1.3rem);
-            max-width: 800px;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 40px;
-            line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            padding-top: 30px;
-        }
-
-        /* About Section - Clean Design */
-        .about-section {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            margin: 100px auto;
-            padding: 100px;
-            background: #212B6233;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 200, 255, 0.1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            z-index: 20;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            margin-bottom: 30px;
-            background: linear-gradient(
-    180deg, 
-    #F2FF00 42%, 
-    #C259FF 56%, 
-    #EE2F88 96%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  background-clip: text;
-  color: transparent; 
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .about-text {
-            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            text-align: center;
-        }
-
-        /* Projects Section (Empty Free Space) */
-        .projects-section {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            min-height: 70vh;
-            margin: 100px auto;
-            z-index: 30;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            margin: 150px auto;
-            padding: 60px;
-            background: rgba(33, 43, 98, 0.15);
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 200, 255, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            z-index: 40;
-        }
-
-        /* Signature Background Layer */
-        .signature-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .signature {
-            width: 80%;
-            max-width: 600px;
-            filter: drop-shadow(0 0 15px rgba(0, 200, 255, 0.3));
-        }
-
-        .signature img {
-            width: 85%;
-            height: auto;
-        }
-
-        .contact-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-title {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            margin-bottom: 40px;
-            
-            text-align: center;
-            background: linear-gradient(
-    90deg, 
-    #8A38F5 0%, 
-    rgba(242, 255, 0, 0.5) 51%, 
-    #D985AC 66%, 
-    #2D46D0 87%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* For Chrome & Safari */
-  background-clip: text;
-  color: transparent; /* Fallback */
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Social Media Icons - Clean Version */
-        .social-icons {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .social-icon-link {
-            display: block;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .social-icon-link img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        
-       
-
-        /* Phone Info Container */
-        .phone-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 15px 30px;
-            border-radius: 50px;
-        }
-
-        .phone-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: -15px;
-        }
-
-        .phone-icon img {
-            width: 30px;
-            height: 30px;
-        }
-
-        .phone-text {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            line-height: 1.2;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .copyright {
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        /* Footer - Gradient Line at Bottom */
-        .footer-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, 
-                #08103F 14.9%, 
-                #FF0077 32.21%, 
-                #C468AC 42.31%, 
-                rgba(242, 255, 0, 0.5) 52.4%, 
-                rgba(71, 226, 219, 0.71) 64.9%, 
-                #8A38F5 72.6%, 
-                #08103F 90.38%);
-            z-index: 50;
-        }
-
-        /* Content container to ensure background covers everything */
-        .content-container {
-            position: relative;
-            min-height: 4757px; /* Match SVG height */
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .social-icons {
-                gap: 15px;
-            }
-            
-            .social-icon-link {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .social-icon-link img {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .phone-info {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
-            
-            .signature {
-                max-width: 90%;
-            }
-            
-            .background-svg {
-                height: 4757px;
-                background-size: 100% 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-bar-container">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SVG Background -->
     <div class="background-svg"></div>
 
@@ -410,16 +28,38 @@
             <div class="logo"><img src="assets/logo.png" alt="logo"></div>
             <div class="logo-text">Geom/Seif</div>
             <div class="nav-links">
-                <a href="#about">About</a>
+                <a href="#welcome-subtitle">About</a>
                 <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a href="#contact-title">Contact</a>
             </div>
         </nav>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
-            <h1 class="welcome-title">WELCOME TO GEOM WORLD</h1>
-            <p class="welcome-subtitle">When Misery And Hope Unite To Make Things Come True</p>
+            <div class="svg-title-container">
+                <svg class="welcome-title-svg" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#8A38F5" />
+                            <stop offset="50.96%" stop-color="rgba(242, 255, 0, 0.5)" />
+                            <stop offset="65.87%" stop-color="#D985AC" />
+                            <stop offset="86.54%" stop-color="#2D46D0" />
+                        </linearGradient>
+                    </defs>
+                    <text x="50%" y="50%" dy="0.35em" text-anchor="middle" dominant-baseline="middle" 
+                          font-family="Autour One" font-size="65"  
+                          fill="url(#titleGradient)" text-transform="uppercase">
+                        <tspan class="title-tspan" style="animation-delay: 0s">WELCOME</tspan>
+                        <tspan dx="20"> </tspan>
+                        <tspan class="title-tspan" style="animation-delay: 0.35s">TO</tspan>
+                        <tspan dx="20"> </tspan>
+                        <tspan class="title-tspan" style="animation-delay: 0.7s">GEOM</tspan>
+                        <tspan dx="20"> </tspan>
+                        <tspan class="title-tspan" style="animation-delay: 1.05s">WORLD</tspan>
+                    </text>
+                </svg>
+            </div>
+            <p class="welcome-subtitle" id="welcome-subtitle">When Misery And Hope Unite To Make Things Come True</p>
         </section>
 
         <!-- About Section -->
@@ -430,9 +70,40 @@
             </p>
         </section>
 
-        <!-- Projects Section (Empty Free Space) -->
+        <!-- Projects Section - Now with Circle Interface -->
         <section id="projects" class="projects-section">
-            <!-- Completely empty space for your custom content -->
+            <div class="projects-wrapper" id="projectsWrapper">
+                <!-- Center Circle with SVG -->
+                <div class="center-circle">
+                    <!-- External SVG with fallback -->
+                    <img src="assets/center-circle.svg" class="center-circle-bg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjM1MCIgdmlld0JveD0iMCAwIDM1MCAzNTAiIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPGNpcmNsZSBjeD0iMTc1IiBjeT0iMTc1IiByPSIxNzUiIGZpbGw9IiMwODEwM0YiIHN0cm9rZT0iIzQ3RTJEQiIgc3Ryb2tlLXdpZHRoPSIxNSIvPgogICAgPHRleHQgeD0iMTc1IiB5PSIxODAiIGZvbnQtc2l6ZT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtZmFtaWx5PSJBdG91ciBPbmUiPkdlb20gV29ybGQ8L3RleHQ+Cjwvc3ZnPg=='">
+                    <div class="center-circle-content">
+                        <h2>My<br>Projects</h2>
+                    </div>
+                </div>
+                
+                <!-- Project Circles with Labels Only - Removed the 5th circle -->
+                <div class="project-circle" style="background-image: url('assets/project1.svg');" data-project="1">
+                    <div class="project-label">A small recipes</div>
+                </div>
+                
+                <div class="project-circle" style="background-image: url('assets/project2.svg');" data-project="2">
+                    <div class="project-label">Landing page</div>
+                </div>
+                
+                <div class="project-circle" style="background-image: url('assets/project3.svg');" data-project="3">
+                    <div class="project-label">CAFÉ website</div>
+                </div>
+                
+                <div class="project-circle" style="background-image: url('assets/project4.svg');" data-project="4">
+                    <div class="project-label">My freecodecamp</div>
+                </div>
+                
+                <!-- Project Details Container -->
+                <div class="project-details" id="projectDetails">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
         </section>
 
         <!-- Contact Section -->
@@ -446,7 +117,7 @@
             
             <!-- Contact Content -->
             <div class="contact-content">
-                <h2 class="contact-title">Contact</h2>
+                <h2 class="contact-title" id="contact-title">Contact</h2>
                 
                 <!-- Social Media Icons -->
                 <div class="social-icons">
@@ -480,16 +151,6 @@
     <!-- Footer -->
     <div class="footer-bar"></div>
     
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
