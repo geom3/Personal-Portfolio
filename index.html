@@ -28,9 +28,9 @@
             <div class="logo"><img src="assets/logo.png" alt="logo"></div>
             <div class="logo-text">Geom/Seif</div>
             <div class="nav-links">
-                <a href="#welcome-subtitle">About</a>
+                <a href="#about-anchor">About</a>
                 <a href="#projects">Projects</a>
-                <a href="#contact-title">Contact</a>
+                <a href="#contact-anchor">Contact</a>
             </div>
         </nav>
 
@@ -62,7 +62,8 @@
             <p class="welcome-subtitle" id="welcome-subtitle">When Misery And Hope Unite To Make Things Come True</p>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section Anchor + Content -->
+        <div id="about-anchor" class="anchor"></div>
         <section id="about" class="about-section">
             <h2 class="section-title">Geom</h2>
             <p class="about-text">
@@ -70,19 +71,18 @@
             </p>
         </section>
 
-        <!-- Projects Section - Now with Circle Interface -->
+        <!-- Projects Section - Circle Interface -->
         <section id="projects" class="projects-section">
             <div class="projects-wrapper" id="projectsWrapper">
                 <!-- Center Circle with SVG -->
                 <div class="center-circle">
-                    <!-- External SVG with fallback -->
                     <img src="assets/center-circle.svg" class="center-circle-bg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjM1MCIgdmlld0JveD0iMCAwIDM1MCAzNTAiIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPGNpcmNsZSBjeD0iMTc1IiBjeT0iMTc1IiByPSIxNzUiIGZpbGw9IiMwODEwM0YiIHN0cm9rZT0iIzQ3RTJEQiIgc3Ryb2tlLXdpZHRoPSIxNSIvPgogICAgPHRleHQgeD0iMTc1IiB5PSIxODAiIGZvbnQtc2l6ZT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtZmFtaWx5PSJBdG91ciBPbmUiPkdlb20gV29ybGQ8L3RleHQ+Cjwvc3ZnPg=='">
                     <div class="center-circle-content">
                         <h2>My<br>Projects</h2>
                     </div>
                 </div>
                 
-                <!-- Project Circles with Labels Only - Removed the 5th circle -->
+                <!-- Project Circles -->
                 <div class="project-circle" style="background-image: url('assets/project1.svg');" data-project="1">
                     <div class="project-label">A small recipes</div>
                 </div>
@@ -100,26 +100,22 @@
                 </div>
                 
                 <!-- Project Details Container -->
-                <div class="project-details" id="projectDetails">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
+                <div class="project-details" id="projectDetails"></div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact Section Anchor + Content -->
+        <div id="contact-anchor" class="anchor"></div>
         <section id="contact" class="contact-section">
-            <!-- Signature Background Layer -->
             <div class="signature-layer">
                 <div class="signature">
                     <img src="assets/Signature.svg" alt="Signature">
                 </div>
             </div>
             
-            <!-- Contact Content -->
             <div class="contact-content">
                 <h2 class="contact-title" id="contact-title">Contact</h2>
                 
-                <!-- Social Media Icons -->
                 <div class="social-icons">
                     <a href="https://www.facebook.com/share/1FHdFT6WtP/" class="social-icon-link" target="_blank">
                         <img src="assets/facebook.png" alt="Facebook" onmouseover="this.src='assets/facebook2.png'" onmouseout="this.src='assets/facebook.png'">
@@ -135,7 +131,6 @@
                     </a>
                 </div>
                 
-                <!-- Phone Information -->
                 <div class="phone-info">
                     <div class="phone-icon">
                         <img src="assets/Vector.png" alt="Phone Icon">

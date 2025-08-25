@@ -43,7 +43,9 @@ function startWelcomeAnimations() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        target.scrollIntoView({
             behavior: 'smooth'
         });
     });
@@ -62,8 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let isAutoRotating = true;
     let currentRotationIndex = 0;
     let circlePositions = [];
+    let currentRadius = 0; // store computed radius so other functions can use it
     
-    // Project data - Removed the 5th project
+    // Project data
     const projects = [
         {
             title: "A small recipes",
@@ -93,31 +96,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Position project circles around the center on the left hemisphere with better spacing
     function positionCircles() {
-        const radius = Math.min(projectsWrapper.offsetWidth, projectsWrapper.offsetHeight) * 0.3; // Increased radius for better spacing
-        const centerX = projectsWrapper.offsetWidth / 2;
-        const centerY = projectsWrapper.offsetHeight / 2;
+        const wrapperW = projectsWrapper.offsetWidth;
+        const wrapperH = projectsWrapper.offsetHeight;
+
+        // read sizes for center and a project to compute safe radius
+        const centerRect = centerCircle.getBoundingClientRect();
+        const projRect = projectCircles[0] ? projectCircles[0].getBoundingClientRect() : { width: 120, height: 120 };
+        const projSize = Math.max(projRect.width, projRect.height, 120);
+
+        // Base radius relative to wrapper size (closer to your original)
+        let radius = Math.min(wrapperW, wrapperH) * 0.3;
+
+        // Ensure radius is at least large enough to avoid overlap with center circle
+        const minRadius = (Math.max(centerRect.width, centerRect.height) / 2) + (projSize / 2) + 40;
+        radius = Math.max(radius, minRadius);
+
+        // store for other functions to use
+        currentRadius = radius;
+
+        const centerX = wrapperW / 2;
+        const centerY = wrapperH / 2;
         
         // Clear previous positions
         circlePositions = [];
         
-        // Define angles for left hemisphere only with better spacing
+        // Angles match your original left-hemisphere layout (radians)
         const angles = [
             4.712388980385, // 270°
-            3.665191429188,  // 210°
-            2.617993877991,  // 150°
-            1.570796326795   // 90°
+            3.665191429188, // 210°
+            2.617993877991, // 150°
+            1.570796326795  // 90°
         ];
         
         projectCircles.forEach((circle, index) => {
-            const angle = angles[index];
+            const angle = angles[index] || (Math.PI + (index * 0.5)); // fallback
             const x = centerX + radius * Math.cos(angle);
             const y = centerY + radius * Math.sin(angle);
         
             circle.style.left = `${x}px`;
             circle.style.top = `${y}px`;
             
-            // Store the position for resetting later
+            // Store the position for resetting later (original positions)
             circlePositions[index] = { x, y };
+            
+            // Reset any state classes/sizes just in case
+            circle.classList.remove('active', 'hidden');
+            circle.style.width = '';
+            circle.style.height = '';
             
             // Position the label to the left of the circle
             positionLabel(circle, x, y, centerX, centerY);
@@ -151,10 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset all project circles to their original positions
         projectCircles.forEach((circle, index) => {
-            circle.classList.remove('active');
-            circle.classList.remove('hidden');
-            circle.style.width = '120px';
-            circle.style.height = '120px';
+            circle.classList.remove('active', 'hidden');
+            circle.style.width = '';
+            circle.style.height = '';
             circle.style.zIndex = '5';
             
             // Reset to original position
@@ -209,27 +233,41 @@ document.addEventListener('DOMContentLoaded', function() {
             const circle = projectCircles[nextIndex];
             const projectId = circle.getAttribute('data-project');
             
-            // Move center circle further to the right and make it bigger
+            // Move center circle further to the right and make it bigger (same as your original)
             centerCircle.style.width = '500px';
             centerCircle.style.height = '500px';
             centerCircle.style.left = '92%';
             
-            // Scale up the current circle and bring to front
+            // Scale up the current circle and bring to front — use original size 350
             circle.classList.add('active');
             circle.style.width = '350px';
             circle.style.height = '350px';
             circle.style.zIndex = '15';
             
-            // Move the active circle to the right and up (more up)
+            // Move the active circle to fixed offsets (but tuned: less right, more up),
+            // with adaptation for display scaling (devicePixelRatio).
             const centerX = projectsWrapper.offsetWidth / 2;
             const centerY = projectsWrapper.offsetHeight / 2;
-            circle.style.left = `${centerX + 100}px`; // Move right
-            circle.style.top = `${centerY - 150}px`; // Move up more (increased from 40px to 150px)
+
+            const scale = window.devicePixelRatio || 1;
+            const baseXMul = 0.22;   // smaller X multiplier (less right)
+            const baseYMul = 0.65;   // larger Y multiplier (more up)
+            const scaleX = 1 / Math.max(1, scale * 0.9);
+            const scaleY = Math.max(1, scale * 1.05);
+
+            const offsetX = Math.min(100, Math.round(currentRadius * baseXMul * scaleX));
+            const offsetY = Math.min(220, Math.round(currentRadius * baseYMul * scaleY));
+
+            circle.style.left = `${centerX + offsetX}px`;
+            circle.style.top = `${centerY - offsetY}px`;
             
-            // Hide all other circles
+            // Hide all other circles (original design)
             projectCircles.forEach(otherCircle => {
                 if (otherCircle !== circle) {
                     otherCircle.classList.add('hidden');
+                    otherCircle.style.zIndex = '5';
+                    otherCircle.style.width = '120px';
+                    otherCircle.style.height = '120px';
                 }
             });
             
@@ -239,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Move to next index
             currentRotationIndex = (currentRotationIndex + 1) % projectCircles.length;
             
-        }, 4000); // Reduced from 5000 to 4000 milliseconds
+        }, 4000);
     }
     
     // Reset view for auto-rotation
@@ -251,10 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset all project circles
         projectCircles.forEach((circle, index) => {
-            circle.classList.remove('active');
-            circle.classList.remove('hidden');
-            circle.style.width = '120px';
-            circle.style.height = '120px';
+            circle.classList.remove('active', 'hidden');
+            circle.style.width = '';
+            circle.style.height = '';
             circle.style.zIndex = '5';
             
             // Reset to original position
@@ -306,28 +343,24 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Reset any previously active project
+        // Reset any previously active project (restore them)
         if (activeProject) {
-            const prevActive = document.querySelector(`.project-circle[data-project="${activeProject}"]`);
-            if (prevActive) {
-                prevActive.classList.remove('active');
-                prevActive.classList.add('hidden');
-                prevActive.style.width = '120px';
-                prevActive.style.height = '120px';
-                
-                // Reset to original position
-                const prevIndex = Array.from(projectCircles).indexOf(prevActive);
-                if (circlePositions[prevIndex]) {
-                    prevActive.style.left = `${circlePositions[prevIndex].x}px`;
-                    prevActive.style.top = `${circlePositions[prevIndex].y}px`;
+            projectCircles.forEach((c, i) => {
+                c.classList.remove('active', 'hidden');
+                c.style.width = '';
+                c.style.height = '';
+                c.style.zIndex = '5';
+                if (circlePositions[i]) {
+                    c.style.left = `${circlePositions[i].x}px`;
+                    c.style.top = `${circlePositions[i].y}px`;
                 }
-            }
+            });
         }
         
         // Set new active project
         activeProject = projectId;
         
-        // Move center circle further to the right and make it bigger
+        // Move center circle further to the right and make it bigger (same as original)
         centerCircle.style.width = '500px';
         centerCircle.style.height = '500px';
         centerCircle.style.left = '92%';
@@ -338,16 +371,29 @@ document.addEventListener('DOMContentLoaded', function() {
         circle.style.height = '350px';
         circle.style.zIndex = '15';
         
-        // Move the active circle to the right and up (more up)
+        // Move the active circle to the right and up using tuned offsets (less right, more up)
         const centerX = projectsWrapper.offsetWidth / 2;
         const centerY = projectsWrapper.offsetHeight / 2;
-        circle.style.left = `${centerX + 100}px`; // Move right
-        circle.style.top = `${centerY - 150}px`; // Move up more (increased from 40px to 150px)
+
+        const scale = window.devicePixelRatio || 1;
+        const baseXMul = 0.22;   // smaller X multiplier
+        const baseYMul = 0.65;   // larger Y multiplier
+        const scaleX = 1 / Math.max(1, scale * 0.9);
+        const scaleY = Math.max(1, scale * 1.05);
+
+        const offsetX = Math.min(100, Math.round(currentRadius * baseXMul * scaleX));
+        const offsetY = Math.min(220, Math.round(currentRadius * baseYMul * scaleY));
+
+        circle.style.left = `${centerX + offsetX}px`;
+        circle.style.top = `${centerY - offsetY}px`;
         
-        // Hide all other circles
-        projectCircles.forEach(otherCircle => {
+        // Hide all other circles (original design)
+        projectCircles.forEach((otherCircle) => {
             if (otherCircle !== circle) {
                 otherCircle.classList.add('hidden');
+                otherCircle.style.zIndex = '5';
+                otherCircle.style.width = '120px';
+                otherCircle.style.height = '120px';
             }
         });
         
